@@ -143,4 +143,5 @@ Currently in development phase (Phase 1 completed – Basic student & marks mana
 
 👨‍💻 Developed By
 
-  Saurabh Bhatt and Team 
+  Saurabh and Team 
+  
