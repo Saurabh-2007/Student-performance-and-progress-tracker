@@ -139,7 +139,9 @@ Multi-user access system
 
 📌 Project Status
 
-Currently in development phase (Phase 1 completed – Basic student & marks management system).
+Currently in development phase.
+
+Note: Download mysql-connector-j-9.6.0.jar and add it to project classpath.
 
 👨‍💻 Developed By
 
