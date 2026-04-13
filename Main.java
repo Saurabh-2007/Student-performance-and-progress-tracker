@@ -21,7 +21,8 @@ public class Main {
             System.out.println("7. Update Marks");
             System.out.println("8. Delete Student");
             System.out.println("9.Find Topper");
-            System.out.println("10. Exit");
+            System.out.println("10. Export Report (CSV)");
+            System.out.println("11. Exit");
             System.out.print("Choose option: ");
 
 
@@ -110,8 +111,12 @@ public class Main {
             case 9:
                 marksDao.findTopper();
                 break;
-
             case 10:
+                System.out.print("Enter Student ID: ");
+                int id = sc.nextInt();
+                marksDao.exportReportToCSV(id);
+                break;
+            case 11:
                 System.out.println("Exiting...");
                 System.exit(0);
 

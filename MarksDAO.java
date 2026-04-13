@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.io.FileWriter;
 
 public class MarksDAO {
 
@@ -184,6 +185,72 @@ public void findTopper() {
         } else {
             System.out.println("No data available.");
         }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+// Calculate grade
+private String calculateGrade(double percentage) {
+
+    if (percentage >= 90) return "A+";
+    else if (percentage >= 80) return "A";
+    else if (percentage >= 70) return "B";
+    else if (percentage >= 60) return "C";
+    else return "Fail";
+}
+
+// export to file
+
+public void exportReportToCSV(int studentId) {
+
+    String query = "SELECT s.name, m.subject, m.marks " +
+                   "FROM student s JOIN marks m ON s.student_id = m.student_id " +
+                   "WHERE s.student_id = ?";
+
+    try (Connection con = DBConnection.getConnection();
+         PreparedStatement pst = con.prepareStatement(query)) {
+
+        pst.setInt(1, studentId);
+        ResultSet rs = pst.executeQuery();
+
+        FileWriter writer = new FileWriter("report_" + studentId + ".csv");
+
+        writer.append("Student Report\n");
+
+        String studentName = "";
+        int total = 0, count = 0;
+        writer.append("Subject,Marks\n");
+
+        while (rs.next()) {
+            studentName = rs.getString("name");
+            String subject = rs.getString("subject");
+            int marks = rs.getInt("marks");
+
+            writer.append(subject).append(",").append(String.valueOf(marks)).append("\n");
+
+            total += marks;
+            count++;
+        }
+        writer.append("Student Name: ").append(studentName).append("\n\n");
+        
+
+        if (count == 0) {
+            System.out.println("No data found!");
+            writer.close();
+            return;
+        }
+
+        double percentage = (double) total / count;
+        String grade = calculateGrade(percentage);
+
+        writer.append("\nTotal,").append(String.valueOf(total)).append("\n");
+        writer.append("Percentage,").append(String.format("%.2f", percentage)).append("\n");
+        writer.append("Grade,").append(grade).append("\n");
+
+        writer.close();
+
+        System.out.println("✅ Report exported successfully as CSV!");
 
     } catch (Exception e) {
         e.printStackTrace();
