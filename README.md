@@ -1,149 +1,175 @@
-📌 Project Overview
+# 📌 Student Performance and Progress Tracker
 
-Student Performance and Progress Tracker is a Desktop-Based Java Application developed to manage and monitor students’ academic performance efficiently.
-The system allows administrators or teachers to store student details, enter subject-wise marks, calculate percentage & grades, and track overall progress using a MySQL database.
+## 📖 Project Overview
 
-This project is built using Core Java, Java Swing (GUI), JDBC, and MySQL.
+**Student Performance and Progress Tracker** is a Desktop-Based Java Application designed to efficiently manage and analyze students’ academic performance.
 
-🎯 Objectives
+The system enables administrators or teachers to:
 
-To digitize student academic records
+* Store student details
+* Enter subject-wise marks
+* Automatically calculate percentage & grades
+* Track overall performance
+* Export reports
 
-To automate percentage and grade calculation
+This project is developed using **Core Java, JDBC, MySQL**, and is currently evolving with advanced features.
 
-To provide an easy-to-use graphical interface
+---
 
-To store and retrieve student data securely using a database
+## 🎯 Objectives
 
-🛠️ Technologies Used
+* To digitize student academic records
+* To automate percentage and grade calculation
+* To provide structured data management using database
+* To enable performance analysis and reporting
+* To build a scalable system for future GUI integration
 
-Java (Core Java)
+---
 
-Java Swing (GUI)
+## 🛠️ Technologies Used
 
-JDBC (Java Database Connectivity)
+* **Java (Core Java)**
+* **JDBC (Java Database Connectivity)**
+* **MySQL Database**
+* **MySQL Connector/J**
+* **Git & GitHub**
 
-MySQL Database
+*(GUI using Java Swing will be implemented in Phase 3)*
 
-MySQL Connector J
+---
 
-Git & GitHub
+## 🏗️ Project Architecture
 
-🏗️ Project Architecture
+The project follows a **Layered Architecture (DAO Pattern)**:
 
-The project follows a simple layered architecture:
+### 🔹 Presentation Layer (Currently Console-Based)
 
-GUI Layer (Presentation Layer)
+* Menu-driven interface
+* User interaction via terminal
 
-Student Form
+### 🔹 Business Logic Layer
 
-Marks Entry Form
+* Percentage Calculation
+* Grade Calculation (A, B, C, Fail)
+* Average Marks Calculation
+* Topper Identification
 
-View Records Screen
+### 🔹 Data Access Layer (DAO)
 
-Business Logic Layer
+* `StudentDAO`
+* `MarksDAO`
+* `DBConnection`
 
-Percentage Calculation
+### 🔹 Database Layer (MySQL)
 
-Grade Calculation
+* `student` table
+* `marks` table
 
-Result Status (Pass/Fail)
+---
 
-Data Access Layer (DAO Pattern)
+## 📊 Features (Phase 1 + Phase 2)
 
-StudentDAO
+### ✅ Core Functionalities
 
-MarksDAO
+* Add Student
+* View Students
+* Add Marks
+* View Marks
+* Calculate Average Marks
+* Generate Performance Report
 
-Database Connection Class
+### 🚀 Advanced Functionalities (Phase 2)
 
-Database Layer (MySQL)
+* Update Marks
+* Delete Student
+* Find Topper
+* Auto Grade System (A/B/C/Fail)
+* Data Validation (numeric checks, empty fields)
+* CSV Report Export 📄
+* Structured & Modular Code (DAO-based)
 
-students table
+---
 
-marks table
+## 📄 Report Export Feature
 
-📊 Features
+The system allows exporting student performance reports in **CSV format**, which can be opened in Excel.
 
-Add new student details
+### Includes:
 
-Insert subject-wise marks
+* Student Name
+* Subject-wise Marks
+* Total Marks
+* Percentage
+* Grade
 
-Automatic percentage calculation
+---
 
-Automatic grade generation
+## 🗄️ Database Structure
 
-Pass/Fail status generation
+### 📘 Student Table
 
-View stored student records
+* `student_id` (Primary Key)
+* `name`
+* `roll_no`
+* `semester`
 
-Desktop-based working (runs locally)
+### 📗 Marks Table
 
-🗄️ Database Structure
-Students Table
+* `student_id` (Foreign Key)
+* `subject`
+* `marks`
 
-student_id
+---
 
-name
+## ▶️ How to Run the Project
 
-class
+### 1️⃣ Install Requirements
 
-roll_number
+* Install **Java (JDK 8+)**
+* Install **MySQL**
 
-Marks Table
+### 2️⃣ Setup Database
 
-student_id (Foreign Key)
+* Create database and tables
+* Update DB credentials in `DBConnection.java`
 
-subject_name
+### 3️⃣ Add JDBC Driver
 
-internal_marks
+* Add `mysql-connector-j-9.6.0.jar`
 
-external_marks
+### 4️⃣ Compile
 
-total_marks
-
-percentage
-
-grade
-
-▶️ How to Run the Project
-
-Install Java (JDK 8 or above)
-
-Install MySQL
-
-Import the database schema
-
-Add MySQL Connector J .jar file
-
-Compile the project:
-
+```bash
 javac -cp ".;mysql-connector-j-9.6.0.jar" *.java
+```
 
-Run the main class:
+### 5️⃣ Run
 
-java -cp ".;mysql-connector-j-9.6.0.jar" MainClassName
-🔮 Future Enhancements
+```bash
+java -cp ".;mysql-connector-j-9.6.0.jar" Main
+```
 
-Attendance Management System
+---
 
-Graphical performance analysis (charts)
+## 🔮 Future Enhancements (Phase 3)
 
-Login authentication system
+* 🎨 GUI using Java Swing
+* 🔐 Login Authentication System
+* 📊 Graphical Analysis (Charts)
+* 📄 PDF Report Export
+* 🌐 Cloud Database Integration
+* 👥 Multi-user Access
 
-Cloud database integration
+---
 
-Export report as PDF
+## 📌 Project Status
 
-Multi-user access system
+✅ **Phase 1 Completed** – Core Student & Marks Management
+✅ **Phase 2 In Progress** – Advanced Features & Optimization
+⏳ **Phase 3 Planned** – GUI & Advanced UI
 
-📌 Project Status
+---
 
-Currently in development phase (Phase 1 completed – Basic student & marks management system).
+## 👨‍💻 Developed By
 
-👨‍💻 Developed By
-
-  Saurabh and Team 
-  
-
-
+**Saurabh and Team**

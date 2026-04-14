@@ -218,22 +218,28 @@ public void exportReportToCSV(int studentId) {
 
         writer.append("Student Report\n");
 
-        String studentName = "";
-        int total = 0, count = 0;
+                String studentName = "";
+                int total = 0, count = 0;
+
+            StringBuilder subjectData = new StringBuilder();
+
+            while (rs.next()) {
+                studentName = rs.getString("name");
+                String subject = rs.getString("subject");
+                int marks = rs.getInt("marks");
+
+                subjectData.append(subject)
+                        .append(",")
+                        .append(marks)
+                        .append("\n");
+
+                total += marks;
+                count++;
+            }   
+                writer.append("Student Name: ").append(studentName).append("\n\n");
+
         writer.append("Subject,Marks\n");
-
-        while (rs.next()) {
-            studentName = rs.getString("name");
-            String subject = rs.getString("subject");
-            int marks = rs.getInt("marks");
-
-            writer.append(subject).append(",").append(String.valueOf(marks)).append("\n");
-
-            total += marks;
-            count++;
-        }
-        writer.append("Student Name: ").append(studentName).append("\n\n");
-        
+        writer.append(subjectData.toString());
 
         if (count == 0) {
             System.out.println("No data found!");
