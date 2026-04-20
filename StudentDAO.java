@@ -53,45 +53,32 @@ public class StudentDAO {
         }
     }
     // Delete Student
-    public void deleteStudent(int studentId) {
+   public void deleteStudent(int studentId) {
 
-        String query = "DELETE FROM student WHERE student_id = ?";
+    String deleteMarksQuery = "DELETE FROM marks WHERE student_id = ?";
+    String deleteStudentQuery = "DELETE FROM student WHERE student_id = ?";
 
-        try (Connection con = DBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement(query)) {
+    try (Connection con = DBConnection.getConnection()) {
 
-            pst.setInt(1, studentId);
+        // Step 1: Delete marks first
+        PreparedStatement pst1 = con.prepareStatement(deleteMarksQuery);
+        pst1.setInt(1, studentId);
+        int marksDeleted = pst1.executeUpdate();
 
-            int rows = pst.executeUpdate();
+        // Step 2: Delete student
+        PreparedStatement pst2 = con.prepareStatement(deleteStudentQuery);
+        pst2.setInt(1, studentId);
+        int studentDeleted = pst2.executeUpdate();
 
-            if (rows > 0) {
-                System.out.println("Student deleted successfully!");
-            } else {
-                System.out.println("Student not found!");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (studentDeleted > 0) {
+            System.out.println(" Student deleted successfully!");
+            System.out.println(" Related marks deleted: " + marksDeleted);
+        } else {
+            System.out.println("!! Student not found!");
         }
-    }
-
-    public void addStudent(String name, String rollNo, int semester) {
-
-    String query = "INSERT INTO student (name, roll_no, semester) VALUES (?, ?, ?)";
-
-    try (Connection con = DBConnection.getConnection();
-         PreparedStatement pst = con.prepareStatement(query)) {
-
-        pst.setString(1, name);
-        pst.setString(2, rollNo);
-        pst.setInt(3, semester);
-
-        pst.executeUpdate();
-        System.out.println("Student added successfully!");
 
     } catch (Exception e) {
         e.printStackTrace();
     }
 }
-
 }
