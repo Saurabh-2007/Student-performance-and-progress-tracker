@@ -3,7 +3,7 @@ import java.io.FileWriter;
 
 public class MarksDAO {
 
-    // 1️⃣ Add Marks
+    //  Add Marks
     public void addMarks(int studentId, String subject, int marks) {
         String query = "INSERT INTO marks (student_id, subject, marks) VALUES (?, ?, ?)";
 
@@ -22,7 +22,7 @@ public class MarksDAO {
         }
     }
 
-    // 2️⃣ View Marks
+    //  View Marks
     public void viewMarks(int studentId) {
         String query = "SELECT subject, marks FROM marks WHERE student_id = ?";
 
@@ -45,7 +45,7 @@ public class MarksDAO {
         }
     }
 
-    // 3️⃣ Calculate Average
+    //  Calculate Average
     public void calculateAverage(int studentId) {
         String query = "SELECT AVG(marks) AS average FROM marks WHERE student_id = ?";
 
@@ -64,7 +64,7 @@ public class MarksDAO {
             e.printStackTrace();
         }
     }
-    // 4️⃣ Generate Full Report
+    // Generate Full Report
 public void generateReport(int studentId) {
 
     String studentQuery = "SELECT name, roll_no, semester FROM student WHERE student_id = ?";
@@ -136,7 +136,7 @@ public void generateReport(int studentId) {
         e.printStackTrace();
     }
 }
-// Update Marks
+// update Marks
 public void updateMarks(int studentId, String subject, int newMarks) {
 
     String query = "UPDATE marks SET marks = ? WHERE student_id = ? AND subject = ?";
@@ -161,7 +161,7 @@ public void updateMarks(int studentId, String subject, int newMarks) {
     }
 }
 
-// 🏆 Find Topper
+//  Find Topper
 public void findTopper() {
 
     String query = """
@@ -256,7 +256,7 @@ public void exportReportToCSV(int studentId) {
 
         writer.close();
 
-        System.out.println("✅ Report exported successfully as CSV!");
+        System.out.println(" Report exported successfully as CSV!");
 
     } catch (Exception e) {
         e.printStackTrace();
