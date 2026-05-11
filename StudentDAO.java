@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 
 public class StudentDAO {
 
-    // Add Student (No student_id because AUTO_INCREMENT)
+    // Add Student  
     public void addStudent(Student student) {
 
         String query = "INSERT INTO student (name, roll_no, semester) VALUES (?, ?, ?)";
